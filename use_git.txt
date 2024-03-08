@@ -1,0 +1,15 @@
+git status
+- 수정 및 추가된 파일들을 확인
+
+git add
+- 버전으로 만들 파일을 추가(add .은 모두 추가)
+
+git status
+- 버전에 담긴 파일 목록을 확인
+
+git commit -m " "
+- 버전을 생성
+
+git push origin
+- 버전을 Github에 업로드
+
