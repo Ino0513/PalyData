@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h2>함수 예제</h2>
+
+        <script>
+            // 한줄 주석 - control + /
+            /*  block 주석 - 여러줄 주석에 사용.  */
+
+            //1. 함수 정의
+            function hello1() {
+                alert("경고입니다."); // Web Browser 경고창 실행.
+            }
+            // hello1()
+
+            //2. parameter(매개변수) 가 있는 함수
+            function hello2(name, age) {
+                alert("hello2");
+                alert(`이름: ${name}, 나이: ${age}`);
+                if (!name) {
+                    // name의 값이 없다면 (null, undefined, 0, '' => false)
+                    alert("이름 입력");
+                }
+            }
+            // hello2("홍길동", 25);
+            // hello2("이순신");
+            // hello2();
+
+            //5. 기본값이 있는 파라미터.
+            function hello3(name = "무명", age = 0) {
+                console.log(`이름: ${name}, 나이: ${age}`);
+            }
+            // hello3("홍길동", 20);
+            // hello3("홍길동")
+            // hello3();
+            // hello3(age = 30); // keyword argument는 js에는 없다.
+
+            //4. 반환값이 있는 함수
+            function hello4() {
+                name = prompt("이름을 입력하세요"); //사용자 입력
+                return `이름 : ${name}`;
+            }
+            // result = hello4()
+            // console.log(result)
+
+
+            //5. Rest Parameter
+            function hello5(name, age, ...other) {
+                console.log(name, age);
+                console.log(other); // 처음 2개를 제외한 나머지는 other에 배열로 대입
+            }
+            
+            hello5("이순신", 30, 178, 82, "서울")
+
+            //6. 함수 리터럴.
+            let hello6 = function (name) {
+                alert(name);
+            };
+            
+            // hello6("이순신")  // 함수 리터럴이 할당된 변수를 함수 이름으로 해서 호출
+
+            //7. 함수를 argument로 전달.
+            // 함수 == (일급시민)객체 == 값 == 변수에 할당할 수있다.
+            function worker(num1, num2, my_func) {
+                result = my_func(num1, num2);
+                console.log("계산결과: " + result);
+            }
+            function sum(n1, n2) {
+                return n1 + n2;
+            }
+            // worker(sum)
+            // worker(function(a, b){
+            //     return a - b
+            // })
+
+
+            // 8. 화살표 함수 : expression을 반환
+            let arrowFunc1 = (num1, num2) => num1 + num2; // 합을 반환
+
+            result = arrowFunc1(100, 200);
+            console.log(result);
+
+            let arrowFunc2 = (num1, num2) => {
+                result = num1 - num2;
+                console.log(result);
+                return [num1, num2, result]
+            };
+
+            a = arrowFunc2(200, 100)
+            console.log(a[1])
+
+            // 파라미터가 없는 경우 빈괄호 처리.
+            let arrowFunc3 = () => {
+                console.log("No Param arrow function")
+            }
+            arrowFunc3()
+
+            let arrowFunc4 = name => `이름: ${name}`
+            console.log(arrowFunc4("홍길동"))
+            
+            b = arrowFunc4('이순신')
+            console.log(b)
+
+            worker(10, 20 , (a, b) => a * b)
+
+
+        </script>
+    </body>
+</html>
