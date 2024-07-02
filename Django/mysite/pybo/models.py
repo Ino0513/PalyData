@@ -7,6 +7,9 @@ class Question(models.Model):
     content= models.TextField()
     create_date = models.DateTimeField()
 
+    def __str__(self):
+        return self.subject
+
 # Answer 모델 -> question, content, create_date
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete= models.CASCADE)
@@ -14,3 +17,6 @@ class Answer(models.Model):
     # on_delete= models.CASCADE -> 연결된 Question이 사라지면 Answer도 함께 삭제
     content = models.TextField()
     create_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.content
