@@ -13,7 +13,7 @@ def index(request):
 
 # 질문 상세 기능
 def detail(request, question_id):
-    question = get_object_or_404(id= question_id)
+    question = get_object_or_404(Question, pk= question_id)
     context = {'question' : question}
 
     return render(request, 'pybo/question_detail.html', context)

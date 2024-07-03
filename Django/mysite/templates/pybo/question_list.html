@@ -1,11 +1,38 @@
 <!-- mysite/templates/pybo/templates/pybo/question_list.html -->
-{% if question_list %}
-    <ul>
-        {% for question in question_list %}
-            <li>
-                <a href="{% url 'pybo : detail' question.id %}">{{ question.subject}}</a>
-            </li>
-        {% endfor %}
-            <p>질문이 없습니다.</p>
-    </ul>
-{% endif %}
+
+<!-- base.html 상속 -->
+{% extends 'base.html' %}
+<!-- block content엔 question_list.html 에서만 쓰이는 내용을 작성 -->
+{% block content %}
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            {% if question_list %}
+            {% for question in question_list %}
+            <tr> <!-- tr은 테이블의 행, td는 데이터 셀 -->
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+                </td>
+                <td>{{ question.create_date }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">질문이 없습니다.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록</a>
+    <!-- 버튼을 클릭하면 pybo:question_create에 해당하는 URL이 호출 -->
+</div>
+{% endblock %}

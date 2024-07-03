@@ -1,0 +1,24 @@
+<!-- mysite/templates/base.html -->
+<!-- base 템플릿은 모든 템플릿이 상속 -->
+
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<!-- head는 meta와 title을 포함 -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!-- pybo CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>Hello, pybo!</title>
+</head>
+
+<body>
+<!-- block content는 기본 템플릿 내용, 상속한 템플릿에서 개별적 구현 -->
+{% block content %}
+{% endblock %}
+</body>
+</html>
