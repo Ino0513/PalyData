@@ -3,6 +3,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Question
+from .forms import QuestionForm
 
 # Create your views here.
 def index(request):
@@ -25,3 +26,22 @@ def answer_create(request, question_id):
 
     # 답변을 생성한 후 화면을 다시 보여주기 위해 redirect
     return redirect('pybo:detail', question_id= question.id)
+
+# 질문 생성 기능
+def question_create(request):
+    # URL요청 방식에 따라 처리
+    # 질문 등록 페이지에서 저장하기 버튼 -> POST 방식으로 요청
+    if request.method == 'POST':
+        form = QuestionForm(request.POST) # 기입한 subject, content 값이 저장되어 객체가 생성
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            question.save()
+
+            return redirect('pybo:index')
+    # 질문 목록 페이지에서 등록하기 버튼 -> GET 방식으로 요청
+    else:
+        form = QuestionForm()
+    context = {'form' : form}
+    
+    return render(request, 'pybo/question_form.html', context)

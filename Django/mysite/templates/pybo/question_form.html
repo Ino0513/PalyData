@@ -1,0 +1,15 @@
+<!-- mysite/pybo/templates/pybo/question_form.html -->
+
+<!-- 질문 등록 화면 -->
+<!-- base.html 상속 -->
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h5 class="my-3 border-bottom pb-2">질문등록</h5>
+        <form method="post"> <!-- action은 지정하지 않으면 현재 페이지의 URL이 디폴트로 -->
+            {% csrf_token %}
+            {{ form.as_p }} <!-- question_create 함수에서 전달한 QuestionForm 객체 -->
+            <button type="submit" class="btn btn-primary">저장하기</button>
+        </form>
+    </div>
+{% endblock %}
